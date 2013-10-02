@@ -149,6 +149,31 @@ class Browser
     !!(ua =~ /Silk/)
   end
 
+  # Detect if browser is a Facebook bot.
+  def facebook?
+    !!(ua =~ /facebookexternalhit/)
+  end
+
+  # Detect if browser is a Google bot.
+  def google?
+    !!(ua =~ /Googlebot/)
+  end
+
+  # Detect if browser is a DuckDuckGo bot.
+  def duckduckgo?
+    !!(ua =~ /DuckDuckBot/)
+  end
+
+  # Detect if browser is a Bing bot.
+  def bing?
+    !!(ua =~ /Bingbot|Adidxbot|MSNBot|BingPreview/)
+  end
+
+  # Return true if browser is a bot (Google, Facebook, Bing, etc.)
+  def bot?
+    facebook? || google? || duckduckgo? || bing?
+  end
+
   # Return a meta info about this browser.
   def meta
     Meta.constants.each_with_object(Set.new) do |meta_name, meta|
